@@ -12,11 +12,14 @@ def get_time():
     return int(timestamp)
 
 
-# 输入物品id
-def set_goods_id():
-    input_file_path = 'buffids_dict.json'
-    goods_name = input("请输入物品名字：")
+# 获取物品名称
 
+def get_goods_name():
+    goods_name = input("请输入物品名字：")
+    return goods_name
+# 输入物品id
+def set_goods_id(goods_name):
+    input_file_path = 'buffids_dict.json'
     with open(input_file_path, 'r', encoding='utf-8') as f:
         data_dict = json.load(f)
 
@@ -47,7 +50,7 @@ def getdata(timestamp, goods_id):
         "_": timestamp
     }
 
-    response = requests.get(url, params=params, headers=headers)
+    response = requests.get(url, params=params, headers=headers, )
     print(response.url)
     if response.status_code == 200:
         data = response.json()
@@ -82,13 +85,14 @@ def get_steam_low_price_us(data):
 
 # 保存Josn文件
 def save_josn_data(data):
-    file = open("output.txt", "w")
+    file = open("outputbuff.txt", "w")
     json_data = json.dumps(data)
     file.write(json_data)
     file.close()
 
 
-buffdata = getdata(timestamp=get_time(), goods_id=set_goods_id())
+goods_name = get_goods_name()
+buffdata = getdata(timestamp=get_time(), goods_id=set_goods_id(goods_name))
 buffLowPrice = get_buff_low_price(buffdata)
 steamLowPrice = get_steam_low_price(buffdata)
 steamLowPrice_US = get_steam_low_price(buffdata)
