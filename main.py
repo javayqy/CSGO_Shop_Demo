@@ -17,9 +17,9 @@ dmdata = dmarket.getdata(goods_name)
 dmlowPrice_USD = round(dmarket.get_low_price(dmdata), 2)
 dmlowPrice_CNY = round(dmlowPrice_USD * 7.2, 2)
 
-print("steam最低价格(人民币):" + steamLowPrice + "steam最低价格(美元):" + steamLowPrice_US)
+print("steam最低价格(人民币):" + steamLowPrice + "  steam最低价格(美元):" + steamLowPrice_US)
 print("buff最低价格(人民币）：" + str(buffLowPrice_CNY) + "  （美元）" + str(buffLowPrice_USD))
-print("DM最低价格（人民币）：" + str(dmlowPrice_CNY) + "DM最低价格(美元)：" + str(dmlowPrice_USD))
+print("DM最低价格（人民币）：" + str(dmlowPrice_CNY) + "  DM最低价格(美元)：" + str(dmlowPrice_USD))
 
 buff.save_josn_data(buffdata)
 dmarket.save_josn_data(dmdata)
