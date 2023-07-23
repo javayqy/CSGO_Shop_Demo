@@ -25,7 +25,7 @@ def getdata(goods_name):
         "side": "market",
         "orderBy": "price",
         "orderDir": "asc",
-        "title": "",
+        "title": goods_name,
         "priceFrom": 0,
         "priceTo": 0,
         "treeFilters": "",
@@ -46,14 +46,22 @@ def getdata(goods_name):
         print('请求失败')
 
 
+# 获取最低价格
+def get_low_price(data):
+    json_Price = data["objects"][0]["price"]["USD"]
+    min_Price = float(json_Price) * 0.01
+    return min_Price
+
+
 def save_josn_data(data):
     file = open("output_dmarkt.txt", "w")
     json_data = json.dumps(data)
     file.write(json_data)
     file.close()
 
-
 # sellname = "AUG | Condemned (Field-Tested)"
-dmdata = getdata()
-print(dmdata)
-save_josn_data(dmdata)
+# dmdata = getdata(goods_name="AK-47 | Black Laminate (Minimal Wear)")
+#
+# print(dmdata)
+# print("DM最低价格(USD)：" + get_low_price(dmdata))
+# save_josn_data(dmdata)

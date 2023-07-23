@@ -62,7 +62,7 @@ def getdata(timestamp, goods_id):
 # 获得buff最低价格
 def get_buff_low_price(data):
     min_Price = data["data"]["items"][0]["price"]
-    return min_Price
+    return float(min_Price)
 
 
 # 获得steam最低价格（人民币，buffjosn里面有）
@@ -90,13 +90,12 @@ def save_josn_data(data):
     file.write(json_data)
     file.close()
 
-
-goods_name = get_goods_name()
-buffdata = getdata(timestamp=get_time(), goods_id=set_goods_id(goods_name))
-buffLowPrice = get_buff_low_price(buffdata)
-steamLowPrice = get_steam_low_price(buffdata)
-steamLowPrice_US = get_steam_low_price(buffdata)
-print("buff最低价格(人民币）：" + buffLowPrice + "  （美元）" + buffLowPrice / 7.2)
-print("steam最低价格(人民币):" + steamLowPrice)
-print("steam最低价格(美元):" + steamLowPrice_US)
-save_josn_data(buffdata)
+# goods_name = get_goods_name()
+# buffdata = getdata(timestamp=get_time(), goods_id=set_goods_id(goods_name))
+# buffLowPrice = get_buff_low_price(buffdata)
+# steamLowPrice = get_steam_low_price(buffdata)
+# steamLowPrice_US = get_steam_low_price(buffdata)
+# print("buff最低价格(人民币）：" + buffLowPrice + "  （美元）" + buffLowPrice / 7.2)
+# print("steam最低价格(人民币):" + steamLowPrice)
+# print("steam最低价格(美元):" + steamLowPrice_US)
+# save_josn_data(buffdata)
