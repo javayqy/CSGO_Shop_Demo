@@ -62,13 +62,21 @@ def get_buff_low_price(data):
     return min_Price
 
 
-# 获得steam最低价格（buffjosn里面有）
+# 获得steam最低价格（人民币，buffjosn里面有）
 def get_steam_low_price(data):
     # 因为goods_infos为物品id所以直接遍历
     for key, value in data["data"]["goods_infos"].items():
         if "steam_price_cny" in value:
             steam_price_cny_value = value["steam_price_cny"]
             return steam_price_cny_value
+        break
+
+
+def get_steam_low_price_us(data):
+    for key, value in data["data"]["goods_infos"].items():
+        if "steam_price" in value:
+            steam_price_value = value["steam_price"]
+            return steam_price_value
         break
 
 
@@ -81,7 +89,10 @@ def save_josn_data(data):
 
 
 buffdata = getdata(timestamp=get_time(), goods_id=set_goods_id())
-LowPrice = get_buff_low_price(buffdata)
-print("buff最低价格：" + LowPrice)
-print("steam最低价格:" + get_steam_low_price(buffdata))
+buffLowPrice = get_buff_low_price(buffdata)
+steamLowPrice = get_steam_low_price(buffdata)
+steamLowPrice_US = get_steam_low_price(buffdata)
+print("buff最低价格(人民币）：" + buffLowPrice + "  （美元）" + buffLowPrice / 7.2)
+print("steam最低价格(人民币):" + steamLowPrice)
+print("steam最低价格(美元):" + steamLowPrice_US)
 save_josn_data(buffdata)
