@@ -19,14 +19,18 @@ def get_goods_name():
     return goods_name
 # 输入物品id
 def set_goods_id(goods_name):
-    input_file_path = 'buffids_dict.json'
-    with open(input_file_path, 'r', encoding='utf-8') as f:
-        data_dict = json.load(f)
+    try:
+        input_file_path = 'buffids_dict.json'
+    except IOError:
+        print("Error:没有找到buffids_dict.json,id字典文件")
+    else:
+        with open(input_file_path, 'r', encoding='utf-8') as f:
+            data_dict = json.load(f)
 
-    for goods_id, name in data_dict.items():
-        if goods_name in name:
-            return goods_id
-    return None
+        for goods_id, name in data_dict.items():
+            if goods_name in name:
+                return goods_id
+        return None
 
 
 def getdata(timestamp, goods_id):
