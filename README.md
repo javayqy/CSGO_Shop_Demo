@@ -9,3 +9,6 @@
 输入物品名称+磨损（目前只支持英文）如:
 
     MP9 | Mount Fuji (Field-Tested)
+
+数据来源：
+https://github.com/ModestSerhat/buff163-ids
